@@ -42,13 +42,13 @@ function seedCatInformation() {
 seedCatInformation()
 
 function getBookHandler(req,res){
-    let ownerName2 = req.query.ownerName
-    catModel.find({ownerName:ownerName2},function(error,ownerData) {
+    let email1 = req.query.email1
+    bookModel.find({email:email1},function(error,bookData) {
         if(error) {
             console.log('error in getting data',error)
         } else {
-            console.log(ownerData)
-            res.send(ownerData)
+            console.log(bookData)
+            res.send(bookData)
         }
     })
 }
