@@ -52,4 +52,46 @@ function getBookHandler(req,res){
         }
     })
 }
+
+async function addBook(req,res){
+    console.log(req.body)
+let {title , description, status ,email} = req.body;
+
+await bookModel.create({
+    title:title,
+    description:description,
+    status :status,
+    email:email
+    
+})
+
+bookModel.find({email:email},function(error,emailData) {
+    if(error) {
+        console.log('error in getting data',error)
+    } else {
+        console.log(emailData)
+        res.send(emailData)
+    }
+})
+}
+function deleteHandler(req,res){
+    let bookID = req.query.bookID
+    
+    bookModel.deleteOne({_id:bookID}).then(() => {
+        bookModel.find({bookID:bookID},function(error,bookIDData) {
+            if(error) {
+                console.log('error in getting data',error)
+            } else {
+                console.log(bookIDData)
+                res.send(bookIDData)
+            }
+        })
+    })
+}
+
+
 module.exports = getBookHandler;
+module.exports = addBook;
+module.exports = deleteHandler;
+
+
