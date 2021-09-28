@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
    
 // const axios = require('axios');
 
-mongoose.connect('mongodb://localhost:27017/books');
+// mongoose.connect('mongodb://localhost:27017/books');
 
 const bookSchema = new mongoose.Schema({
     title: String,
@@ -42,8 +42,8 @@ function seedCatInformation() {
 seedCatInformation()
 
 function getBookHandler(req,res){
-    let email1 = req.query.email1
-    bookModel.find({email:email1},function(error,bookData) {
+    let email = req.query.email
+    bookModel.find({email:email},function(error,bookData) {
         if(error) {
             console.log('error in getting data',error)
         } else {

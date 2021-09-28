@@ -13,11 +13,14 @@ server.use(cors());
 const PORT = process.env.PORT;
 
 const getBooksHandler = require("./modules/Book");
+const mongoose = require('mongoose') 
+
+mongoose.connect('mongodb://localhost:27017/books');
 
 // const axios = require('axios');
 
 server.get('/' , home);
-server.get('/getCatsOwner',getBooksHandler)
+server.get('/books',getBooksHandler)
 server.get("*", notFound);
 
 
