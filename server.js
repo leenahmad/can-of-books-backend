@@ -20,6 +20,8 @@ const {addBook} = require('./modules/Book');
 
 const {deleteHandler} = require('./modules/Book')
 
+const {updateHandler} = require('./modules/Book')
+
 const mongoose = require('mongoose') 
 
 mongoose.connect(`${process.env.MONGO_SERVER_LINK}`);
@@ -31,6 +33,7 @@ server.get('/' , home);
 server.get('/books',getBookHandler)
 server.post('/addBook', addBook)
 server.delete('/deleteBook', deleteHandler)
+server.put('/updateBook', updateHandler)
 server.get("*", notFound);
 
 
