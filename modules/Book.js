@@ -92,18 +92,20 @@ function deleteHandler(req, res) {
 }
 
 function updateHandler(req , res){
+  console.log(1255298,req.body)
   let { title, description, bookID,status, email } = req.body;
+  
 
-  bookModel.findByIdAndUpdate(bookID , {title, description ,status, email} , (error,updateData) => {
+  bookModel.findByIdAndUpdate(bookID , {title, description ,status, email} , (error,updatedData) => {
     if(error){console.log('error in updating')}
     else{
       console.log('updatedData', updatedData);
-      bookModel.find({ email: email }, function (error, updateData) {
+      bookModel.find({ email: email }, function (error,emailData) {
         if (error) {
           console.log("error in getting data", error);
         } else {
         //   console.log(22222222222,emailData)
-          res.send(updateData);
+          res.send(emailData);
         }
       });
     }
