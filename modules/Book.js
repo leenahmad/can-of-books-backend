@@ -33,9 +33,9 @@ function seedCatInformation() {
     email: "leenkaraja24@gmail.com",
   });
 
-  //     java.save();
-  //     javaScript.save();
-  //     html.save();
+      // java.save();
+      // javaScript.save();
+      // html.save();
 }
 
 // seedCatInformation()
