@@ -14,11 +14,11 @@ server.use(cors());
 const PORT = process.env.PORT;
 server.use(express.json());
 
-const getBooksHandler = require('./modules/Book');
+const {getBookHandler} = require('./modules/Book');
 
-const addBook = require('./modules/Book');
+const {addBook} = require('./modules/Book');
 
-const deleteHandler = require('./modules/Book')
+const {deleteHandler} = require('./modules/Book')
 
 const mongoose = require('mongoose') 
 
@@ -28,7 +28,7 @@ mongoose.connect('mongodb://localhost:27017/books');
 
 
 server.get('/' , home);
-server.get('/books',getBooksHandler)
+server.get('/books',getBookHandler)
 server.post('/addBook', addBook)
 server.delete('/deleteBook', deleteHandler)
 server.get("*", notFound);
