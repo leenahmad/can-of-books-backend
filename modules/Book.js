@@ -91,6 +91,25 @@ function deleteHandler(req, res) {
   });
 }
 
+function updateHandler(req , res){
+  let { title, description, bookID,status, email } = req.body;
+
+  bookModel.findByIdAndUpdate(bookID , {title, description ,status, email} , (error,updateData) => {
+    if(error){console.log('error in updating')}
+    else{
+      console.log('updatedData', updatedData);
+      bookModel.find({ email: email }, function (error, updateData) {
+        if (error) {
+          console.log("error in getting data", error);
+        } else {
+        //   console.log(22222222222,emailData)
+          res.send(updateData);
+        }
+      });
+    }
+  })
+}
+
 // module.exports = getBookHandler;
 // module.exports = addBook;
 
@@ -99,5 +118,6 @@ function deleteHandler(req, res) {
 module.exports ={
     getBookHandler,
     addBook,
-    deleteHandler
+    deleteHandler,
+    updateHandler
 }
